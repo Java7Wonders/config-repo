@@ -1,3 +1,4 @@
+
 server:
    port: 8079
    
@@ -7,3 +8,11 @@ spring:
      gateway:
        default-filters:
        - PrefixPath=/
+       routes:
+      # ======================
+       - id: users
+         uri: lb://users
+         predicates:
+         - Path=/users/**
+         filters:
+         - StripPrefix=1
